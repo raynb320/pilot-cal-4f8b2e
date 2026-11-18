@@ -1,22 +1,55 @@
 <!doctype html><html lang="zh-CN"><head><meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1"><title>我的排班日历</title>
+<meta name="viewport" content="width=device-width,initial-scale=1"><title>排班日历 · 订阅</title>
 <style>
-body{font-family:-apple-system,'PingFang SC',sans-serif;max-width:680px;margin:30px auto;padding:0 18px;line-height:1.7;color:#222}
-h1{color:#ff6900;font-size:22px}
-.big{display:inline-block;background:#ff6900;color:#fff;text-decoration:none;border-radius:8px;padding:14px 26px;font-size:17px;font-weight:600;margin:10px 0}
-.box{background:#fff8f0;border:1px solid #ffd9b8;border-radius:10px;padding:16px;margin:16px 0}
+body{font-family:-apple-system,'PingFang SC',sans-serif;max-width:680px;margin:24px auto;padding:0 18px;line-height:1.65;color:#222}
+h1{color:#ff6900;font-size:22px;margin-bottom:4px}
+.hero{background:linear-gradient(135deg,#ff8a3d,#ff6900);color:#fff;border-radius:14px;padding:20px;margin:18px 0;text-align:center}
+.hero .big{display:inline-block;background:#fff;color:#ff6900;text-decoration:none;border-radius:30px;padding:13px 34px;font-size:17px;font-weight:700;margin-top:8px}
+.box{background:#fff;border:1px solid #e8e8e8;border-radius:12px;padding:16px 18px;margin:14px 0}
+.box b{font-size:16px}
+a.app{display:inline-block;background:#f5f5f5;border:1px solid #ddd;border-radius:8px;padding:8px 14px;margin:6px 6px 0 0;text-decoration:none;color:#333;font-size:14px}
+.code{background:#f6f6f6;border-radius:6px;padding:10px;font-size:12px;word-break:break-all;margin:8px 0;font-family:monospace}
+button{background:#ff6900;color:#fff;border:0;border-radius:6px;padding:8px 14px;font-size:13px;cursor:pointer}
+.tip{background:#fff8f0;border:1px solid #ffd9b8;border-radius:8px;padding:12px;font-size:13px;color:#8a5a20}
 small{color:#888}
 </style></head><body>
 <h1>我的排班日历</h1>
-<p>共 3 天排班 · 航段简写 · 首段起飞前 95 分钟起 · 当天结束 · 不提醒</p>
-<div class="box"><b>下载日历文件</b>
-<p>点下面按钮下载 <code>我的排班.ics</code>,然后导入小米日历(设置 → 日程导入 → 从文件导入)。</p>
-<a class="big" href="javascript:void(0)" id="dl">⬇ 下载日历文件</a></div>
-<div class="box"><b>给其他日历 App 的订阅地址</b>
-<p>如果你换用支持网络订阅的日历(如 Google 日历),可用这个公开链接订阅,排班更新会自动同步:</p>
-<p style="font-family:monospace;font-size:12px;word-break:break-all;background:#f6f6f6;padding:10px;border-radius:6px">https://raynb320.github.io/pilot-cal-4f8b2e/schedule.ics</p></div>
-<p><small>排班有更新时,回来重新下载导入即可。这是私人页面,请勿外传。</small></p>
+<p>3 天排班 · 航段简写 · 当天结束 · 不提醒</p>
+
+<div class="hero">
+<div style="font-size:15px">用的是小米日历、订阅会卡？换一个支持订阅的日历 App 即可</div>
+<a class="big" href="webcal://cdn.jsdelivr.net/gh/raynb320/pilot-cal-4f8b2e@main/schedule.ics">📅 一键订阅排班</a>
+<div style="font-size:12px;margin-top:8px;opacity:.9">点这个按钮，会自动打开日历 App 并添加订阅</div>
+</div>
+
+<div class="tip">
+<b>一键订阅没反应？</b> 说明当前没有能打开订阅的日历 App。请先在下面装一个，再回来点上面的按钮。
+</div>
+
+<div class="box"><b>① 推荐安装的日历 App</b>
+<p><small>选一个支持网络订阅的（都不追、免费）：</small></p>
+<a class="app" href="https://play.google.com/store/apps/details?id=org.onekash.kashcal">KashCal · 最像苹果日历(Google Play)</a>
+<a class="app" href="https://github.com/KashCal/KashCal/releases">KashCal · 下载安装包</a>
+<a class="app" href="https://sj.qq.com/appdetail/cn.youxiao.yxcalendar">优效日历 · 国内应用商店</a>
+<p style="margin-top:10px"><small>装好后回到这个页面，点上面「一键订阅」，或复制下面的链接到 App 的「订阅日历/从网络添加」里。</small></p>
+</div>
+
+<div class="box"><b>② 订阅链接（手动复制备用）</b>
+<div class="code" id="u1">webcal://cdn.jsdelivr.net/gh/raynb320/pilot-cal-4f8b2e@main/schedule.ics</div>
+<button onclick="cp('u1')">复制</button>
+<p style="margin-top:10px"><small>如果上面这条订阅失败，换这条备用：</small></p>
+<div class="code" id="u2">https://raynb320.github.io/pilot-cal-4f8b2e/schedule.ics</div>
+<button onclick="cp('u2')">复制</button>
+</div>
+
+<div class="box"><b>③ 只想下载文件导入？</b>
+<p><small>不订阅、一次性导入也行。点下面下载 ics，再用日历的「从文件导入」打开。</small></p>
+<a class="app" href="javascript:void(0)" id="dl">⬇ 下载排班文件</a>
+</div>
+
+<p><small>排班更新后，订阅会自动同步；文件导入的需要重新下载。这是私人链接，请勿外传。</small></p>
 <script>
+function cp(id){navigator.clipboard.writeText(document.getElementById(id).innerText).then(()=>alert('已复制'))}
 var p=new URLSearchParams(location.search).get('sharecode')||'';
 document.getElementById('dl').href='/calendar.ics'+(p?'?sharecode='+p:'');
 document.getElementById('dl').setAttribute('download','我的排班.ics');
