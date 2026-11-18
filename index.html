@@ -1,24 +1,23 @@
 <!doctype html><html lang="zh-CN"><head><meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>排班订阅 · 兼容性测试</title><style>
-body{font-family:-apple-system,'PingFang SC',sans-serif;max-width:680px;margin:24px auto;padding:0 18px;line-height:1.6;color:#222}
+<meta name="viewport" content="width=device-width,initial-scale=1"><title>我的排班日历</title>
+<style>
+body{font-family:-apple-system,'PingFang SC',sans-serif;max-width:680px;margin:30px auto;padding:0 18px;line-height:1.7;color:#222}
 h1{color:#ff6900;font-size:22px}
-.item{background:#fff;border:1px solid #e5e5e5;border-radius:10px;padding:14px 16px;margin:14px 0}
-.item b{font-size:16px}
-.code{background:#f6f6f6;border-radius:6px;padding:10px;font-size:12px;word-break:break-all;margin:8px 0;font-family:monospace}
-button{background:#ff6900;color:#fff;border:0;border-radius:6px;padding:9px 14px;font-size:14px}
-.tip{background:#fff8f0;border:1px solid #ffd9b8;border-radius:8px;padding:12px;font-size:14px;color:#8a5a20}
+.big{display:inline-block;background:#ff6900;color:#fff;text-decoration:none;border-radius:8px;padding:14px 26px;font-size:17px;font-weight:600;margin:10px 0}
+.box{background:#fff8f0;border:1px solid #ffd9b8;border-radius:10px;padding:16px;margin:16px 0}
 small{color:#888}
 </style></head><body>
-<h1>排班订阅 · 兼容性测试</h1>
-<div class="tip">从<b>第 1 个</b>链接开始,复制到小米日历「设置 → 日程导入 → URL 导入」添加。<b>哪个能成功添加成功,就停在那个</b>,告诉我编号。如果都卡住,也告诉我。</div>
-<div class="item"><b>1 · 极简本地时间版(最推荐)</b><br><small>去掉时区声明和 METHOD,时间用本地时间</small>
-<div class="code" id="ulocal.ics">https://raynb320.github.io/pilot-cal-4f8b2e/local.ics</div>
-<button onclick="cp('ulocal.ics')">复制这个链接</button></div><div class="item"><b>2 · 中文Base64版</b><br><small>在本地时间版基础上,中文航段用标准编码</small>
-<div class="code" id="ub64.ics">https://raynb320.github.io/pilot-cal-4f8b2e/b64.ics</div>
-<button onclick="cp('ub64.ics')">复制这个链接</button></div><div class="item"><b>3 · jsDelivr加速+本地时间</b><br><small>走国内较快的 CDN,内容同版本1</small>
-<div class="code" id="uCDN 加速版">https://cdn.jsdelivr.net/gh/raynb320/pilot-cal-4f8b2e@main/local.ics</div>
-<button onclick="cp('uCDN 加速版')">复制这个链接</button></div><div class="item"><b>4 · 原始UTC版</b><br><small>最初的版本,用来对照</small>
-<div class="code" id="uschedule.ics">https://raynb320.github.io/pilot-cal-4f8b2e/schedule.ics</div>
-<button onclick="cp('uschedule.ics')">复制这个链接</button></div><script>function cp(id){navigator.clipboard.writeText(document.getElementById(id).innerText).then(()=>alert('已复制'))}</script>
-</body></html>
+<h1>我的排班日历</h1>
+<p>共 3 天排班 · 航段简写 · 首段起飞前 95 分钟起 · 当天结束 · 不提醒</p>
+<div class="box"><b>下载日历文件</b>
+<p>点下面按钮下载 <code>我的排班.ics</code>,然后导入小米日历(设置 → 日程导入 → 从文件导入)。</p>
+<a class="big" href="javascript:void(0)" id="dl">⬇ 下载日历文件</a></div>
+<div class="box"><b>给其他日历 App 的订阅地址</b>
+<p>如果你换用支持网络订阅的日历(如 Google 日历),可用这个公开链接订阅,排班更新会自动同步:</p>
+<p style="font-family:monospace;font-size:12px;word-break:break-all;background:#f6f6f6;padding:10px;border-radius:6px">https://raynb320.github.io/pilot-cal-4f8b2e/schedule.ics</p></div>
+<p><small>排班有更新时,回来重新下载导入即可。这是私人页面,请勿外传。</small></p>
+<script>
+var p=new URLSearchParams(location.search).get('sharecode')||'';
+document.getElementById('dl').href='/calendar.ics'+(p?'?sharecode='+p:'');
+document.getElementById('dl').setAttribute('download','我的排班.ics');
+</script></body></html>
